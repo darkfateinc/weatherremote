@@ -1,19 +1,14 @@
 import React from "react";
+import WeatherDescription from "./WeatherDescription";
 
 function WeatherMore(props) {
-    if(props) {
+    if(props.history) {
         return (
-            <div>
-                
-            </div>
+            <WeatherDescription city={props.location.state}/>
         );
     } else {
-        return(
-            <div>
-                Loading...
-            </div>
-        )
+        return null
     }
 }
 
-export default WeatherMore;
+export default WeatherMore

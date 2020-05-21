@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import {useDispatch} from "react-redux";
 import {fetchWeather} from "../actions/fetchWeather";
+import {saveCity} from "../actions/saveCity";
 
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
@@ -19,12 +20,14 @@ function AddCity() {
     const [city, setCity] = useState([])
     const dispatch = useDispatch();
     const getWeatherAction = (city) => dispatch(fetchWeather(city))
-    const saveCity = (e) => {
+    //const saveWeather = (city) => dispatch(saveCity(city))
+    const saveCityWeather = (e) => {
         e.preventDefault();
+        //saveWeather(city);
         getWeatherAction(city);
     }
     return (
-        <form onSubmit={saveCity}>
+        <form onSubmit={saveCityWeather}>
             <div>
                 <TextField type="text" variant="outlined" onChange={ e => setCity( e.target.value ) }/>
             </div>

@@ -7,7 +7,7 @@ function WeatherDisplay(props) {
         return (
             <div>
                 {props.cities.map((item) =>
-                    <WeatherCard city={item} key={item.dt}/>
+                    <WeatherCard city={item} key={item.id}/>
                 )}
             </div>
         );

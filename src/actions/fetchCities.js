@@ -5,7 +5,7 @@ import * as firebase from "firebase";
 export function fetchCities(){
     return function (dispatch) {
         firebase.database().ref('cities').on("value", (snp)=>{
-            var data = [];
+            let data = [];
             snp.forEach(ss => {
                 fetch(`http://api.openweathermap.org/data/2.5/weather?q=${ss.val().name}&units=metric&appid=71a32f5b757328f2a8a0092508ed2e1b`)
                     .then( res =>{
@@ -13,7 +13,6 @@ export function fetchCities(){
                     })
                     .then(JSONRes => {
                         firebase.database().ref('cities/' + ss.val().id).set(JSONRes);
-
                     }).catch(err => {
                     console.log(err)
                 })

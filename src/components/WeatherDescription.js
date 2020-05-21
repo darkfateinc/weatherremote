@@ -1,19 +1,16 @@
-import React from "react";
+import React, {useEffect} from "react";
+
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import CardActions from "@material-ui/core/CardActions";
-import Button from "@material-ui/core/Button";
-import {updateCity} from "../actions/updateCity";
-import {removeCity} from "../actions/removeCity";
 import Card from "@material-ui/core/Card";
 import {makeStyles} from "@material-ui/core/styles";
 
-import {withRouter} from "react-router";
+import {Link} from "react-router-dom";
 
 const useStyles = makeStyles({
     root: {
         minWidth: 275,
-        display: "inline-block",
         margin: "10px",
         marginLeft: 0
     },
@@ -34,15 +31,8 @@ const useStyles = makeStyles({
     }
 });
 
-function WeatherCard(props) {
-
+function WeatherDescription(props) {
     const classes = useStyles();
-    const getWeatherCity = () => {
-        props.history.push({
-            pathname: '/city/' +props.city.name,
-            state: props.city
-        })
-    }
     if(props) {
         return (
             <Card className={classes.root}>
@@ -59,19 +49,13 @@ function WeatherCard(props) {
                     </Typography>
                 </CardContent>
                 <CardActions>
-                    <Button size="small" onClick={getWeatherCity}>More</Button>
-                    <Button size="small" onClick={updateCity(props.city)}>Update</Button>
-                    <Button size="small" onClick={removeCity(props.city.id)}>Remove</Button>
+                    <Link size="small" to={"/"}>Go Back</Link>
                 </CardActions>
             </Card>
         );
     } else {
-        return(
-            <div>
-                Loading...
-            </div>
-        )
+        return <div>Loading...</div>
     }
 }
 
-export default withRouter(WeatherCard);
+export default WeatherDescription;
