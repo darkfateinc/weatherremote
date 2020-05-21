@@ -5,7 +5,7 @@ import App from './App';
 
 import Store from "./store/store"
 
-import {Provider, useSelector} from "react-redux"
+import {Provider} from "react-redux"
 
 import * as firebase from 'firebase';
 

@@ -1,4 +1,5 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
+
 //Components
 import WeatherDisplay from './components/WeatherDisplay'
 import AddCity from "./containers/AddCity";
@@ -20,10 +21,9 @@ const useStyles = makeStyles({
 
 function App() {
     const classes = useStyles();
-    const [cities, setCities] = useState([])
     const citiesSelector = useSelector(state => state)
     const dispatch = useDispatch();
-    const getCities = () => dispatch(fetchCities())
+    const getCities = () => dispatch( fetchCities() )
     useEffect(() => {
         getCities()
     }, [])

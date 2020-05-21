@@ -8,7 +8,7 @@ export function fetchWeather(city) {
                 return res.json()
             })
             .then(JSONRes => {
-                firebase.database().ref('cities/' + JSONRes.dt).set(JSONRes);
+                firebase.database().ref('cities/' + JSONRes.id).set(JSONRes);
                 dispatch({
                     type: "FETCH_WEATHER",
                     payload: JSONRes
