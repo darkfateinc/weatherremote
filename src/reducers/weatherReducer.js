@@ -1,10 +1,11 @@
 import * as firebase from "firebase";
 
 const weatherInfo = (state = {
+
     weatherInfo: {},
     cities: []
+
 }, action) => {
-    //check type
     if(action.type === "FETCH_WEATHER"){
         state = {...state, weatherInfo: action.payload};
     }

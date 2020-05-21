@@ -35,9 +35,9 @@ const useStyles = makeStyles({
 });
 
 function WeatherDisplay(props) {
-
     const classes = useStyles();
     const bull = <span className={classes.bullet}>•</span>;
+
     if(props.cities.length>0) {
         return (
             <div>

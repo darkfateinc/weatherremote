@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
+import React, {useState} from "react";
+import {useDispatch} from "react-redux";
 import {fetchWeather} from "../actions/fetchWeather";
 
 import TextField from '@material-ui/core/TextField';
@@ -17,7 +17,6 @@ const useStyles = makeStyles({
 function AddCity() {
     const classes = useStyles();
     const [city, setCity] = useState([])
-    const weatherSelector = useSelector(state => state)
     const dispatch = useDispatch();
     const getWeatherAction = (city) => dispatch(fetchWeather(city))
     const saveCity = (e) => {
