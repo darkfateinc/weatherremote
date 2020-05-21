@@ -7,16 +7,22 @@ export function fetchCities(){
         firebase.database().ref('cities').on("value", (snp)=>{
             let data = [];
             snp.forEach(ss => {
-                fetch(`http://api.openweathermap.org/data/2.5/weather?q=${ss.val().name}&units=metric&appid=71a32f5b757328f2a8a0092508ed2e1b`)
-                    .then( res =>{
-                        return res.json()
+                if(ss.val().cod===200) {
+                    fetch(`http://api.openweathermap.org/data/2.5/weather?q=${ss.val().name}&units=metric&appid=71a32f5b757328f2a8a0092508ed2e1b`)
+                        .then(res => {
+                            return res.json()
+                        })
+                        .then(JSONRes => {
+                            if (JSONRes.code !== 400) {
+                                firebase.database().ref('cities/' + ss.val().id).set(JSONRes);
+                            }
+                        }).catch(err => {
+                        console.log(err)
                     })
-                    .then(JSONRes => {
-                        firebase.database().ref('cities/' + ss.val().id).set(JSONRes);
-                    }).catch(err => {
-                    console.log(err)
-                })
-                data.push(ss.val());
+                    data.push(ss.val());
+                } else {
+                    firebase.database().ref('cities/' + undefined).set(null)
+                }
             });
             dispatch({
                 type: "FETCH_CITIES",

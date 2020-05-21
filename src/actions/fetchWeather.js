@@ -8,7 +8,11 @@ export function fetchWeather(city){
                 return res.json()
             })
             .then(JSONRes => {
-                firebase.database().ref('cities/' + JSONRes.id).set(JSONRes);
+                if(JSONRes.cod===200){
+                    firebase.database().ref('cities/' + JSONRes.id).set(JSONRes);
+                } else {
+                    alert("Nothing find")
+                }
             }).catch(err => {
                 console.log(err)
         })

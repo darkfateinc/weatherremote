@@ -14,7 +14,7 @@ function WeatherDisplay(props) {
     } else {
         return(
             <div>
-                Loading...
+                Please wait or type city...
             </div>
         )
     }
